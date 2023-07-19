@@ -3,7 +3,7 @@ name: Node.js Workflow
 on:
   push:
     branches:
-      - release  # Trigger den Workflow nur, wenn in den Branch "release" gepusht wird
+      - release
 
 jobs:
   build:
@@ -16,10 +16,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Wähle die gewünschte Node.js-Version
+          node-version: 18
 
       - name: Install Dependencies
-        run: npm i
+        run: npm install
 
       - name: Run Tests
         run: npm test
