@@ -27,4 +27,4 @@ jobs:
 
       - name: Run Tests
         run: npm test
-        working-directory: ./public  # Use relative path to the public directory
+        working-directory: ./server  # Use relative path to the public directory
