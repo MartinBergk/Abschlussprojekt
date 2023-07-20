@@ -1,32 +1,24 @@
-name: Node.js Workflow
+name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      -  release 
-
+  push: 
+    branches: [ release ] # is triggered if push event in release branch occurs
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # run ubuntu
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          path: Abschlussprojekt  # Set the target directory to the repository root
+      - name: Checkout
+        uses: actions/checkout@v2 # checkout your repo - this is an official action provided by GitHub
 
-      - name: Set up Node.js
+      - name: Set up Node environment
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm i
-        working-directory: public  # Adjust to the correct path
-        
+
       - name: Build project files
         run: npm run docs:build
-        
-      - name: Run Tests
-        run: npm test
-        working-directory: server  # Adjust to the correct path
+
