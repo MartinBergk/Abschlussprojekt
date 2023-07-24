@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  push: 
-    branches: [ release ] # is triggered if push event in release branch occurs
+  push:
+    branches:
+      - release
+
 jobs:
   build:
     runs-on: ubuntu-latest # run ubuntu
@@ -11,14 +13,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2 # checkout your repo - this is an official action provided by GitHub
 
-      - name: Set up Node environment
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm i
+      - name: Print Working Directory
+        run: pwd  # Print the working directory in the GitHub Actions environment
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./server  # Use relative path to the server directory
 
       - name: Run Tests
         run: npm test
-
+        working-directory: ./server/test  # Use relative path to the test directory
